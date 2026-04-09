@@ -204,6 +204,101 @@
   .badge.ft { background: rgba(78,205,196,0.15); color: var(--teal); }
 
   .vol-row { display: grid; grid-template-columns: 1fr 70px; gap: 8px; align-items: center; margin-bottom: 10px; }
+
+  /* EXPORT BUTTON */
+  .export-bar {
+    display: flex; justify-content: center;
+    padding: 28px 0 8px;
+  }
+  .export-btn {
+    display: inline-flex; align-items: center; gap: 10px;
+    background: transparent; border: 1px solid var(--accent);
+    color: var(--accent); font-family: 'DM Mono', monospace;
+    font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase;
+    padding: 12px 28px; border-radius: 4px; cursor: pointer;
+    transition: background 0.2s, color 0.2s;
+  }
+  .export-btn:hover { background: var(--accent); color: #1a1a1a; }
+  .export-btn svg { width: 14px; height: 14px; flex-shrink: 0; }
+
+  /* PRINT STYLES */
+  @media print {
+    @page { margin: 18mm 14mm; size: A4; }
+
+    body {
+      background: #fff !important; color: #111 !important;
+      padding: 0 !important; font-size: 11px;
+    }
+    body::before, body::after { display: none !important; }
+
+    .export-bar, .ft-toggle-bar, .ft-panel-wrap { display: none !important; }
+
+    .container { max-width: 100% !important; animation: none !important; }
+
+    h1 { font-size: 26px !important; color: #111 !important; }
+    h1 span { color: #b8952a !important; }
+    .label-tag { color: #b8952a !important; }
+    .subtitle { color: #555 !important; }
+
+    .panel, .retailer-bundle-section, .cards-grid .card,
+    .rrp-section, .meter-section {
+      background: #fff !important; border: 1px solid #ccc !important;
+      box-shadow: none !important; animation: none !important;
+      break-inside: avoid;
+    }
+    .panel.oy-panel { border-color: #b8952a !important; }
+    .panel.ft-panel { border-color: #2a9d8f !important; }
+
+    .panel-accent.gold { background: #b8952a !important; }
+    .panel-accent.teal { background: #2a9d8f !important; }
+    .retailer-bundle-section::before { background: linear-gradient(90deg, #b8952a, #2a9d8f) !important; }
+
+    .section-title { color: #888 !important; }
+    .section-title::after { background: #ccc !important; }
+
+    .computed-row {
+      background: #f8f8f8 !important; border-color: #ddd !important;
+      color: #111 !important;
+    }
+    .computed-row.highlight { border-color: #b8952a !important; }
+    .computed-label { color: #555 !important; }
+
+    .computed-val.gold, .card.gold .card-value { color: #b8952a !important; }
+    .computed-val.teal, .card.teal .card-value { color: #2a9d8f !important; }
+    .computed-val.green, .card.green .card-value { color: #2d7a3a !important; }
+    .computed-val.red,   .card.red .card-value   { color: #c0392b !important; }
+    .computed-val.warn                            { color: #b8952a !important; }
+    .computed-val.blue,  .card.blue .card-value   { color: #2c5f8a !important; }
+    .computed-val.muted { color: #777 !important; }
+
+    .card-label { color: #888 !important; }
+    .card-sub   { color: #888 !important; }
+    .card { background: #f8f8f8 !important; border: 1px solid #ddd !important; }
+    .card::before { print-color-adjust: exact; -webkit-print-color-adjust: exact; }
+
+    .meter-track { background: #eee !important; }
+    .meter-fill { print-color-adjust: exact; -webkit-print-color-adjust: exact; }
+    .meter-pct  { color: inherit !important; }
+    .meter-title, .meter-legend { color: #777 !important; }
+    .legend-dot { print-color-adjust: exact; -webkit-print-color-adjust: exact; }
+
+    select, input[type="number"] {
+      background: #f8f8f8 !important; border: 1px solid #ccc !important;
+      color: #111 !important; -webkit-appearance: auto !important;
+    }
+    label { color: #555 !important; }
+    .input-unit { color: #777 !important; }
+
+    .badge.oy { background: rgba(184,149,42,0.12) !important; color: #b8952a !important; }
+    .badge.ft { background: rgba(42,157,143,0.12) !important; color: #2a9d8f !important; }
+
+    .header { border-color: #ccc !important; }
+    .divider { background: #ddd !important; }
+    .footer { border-color: #ccc !important; color: #999 !important; }
+
+    .two-col { gap: 12px !important; }
+    .cards-grid { gap: 8px !important; }
+  }
 </style>
 </head>
 <body>
@@ -461,6 +556,18 @@
     </div>
   </div>
 
+  <!-- EXPORT BUTTON -->
+  <div class="export-bar">
+    <button class="export-btn" onclick="exportPDF()">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+        <polyline points="7 10 12 15 17 10"/>
+        <line x1="12" y1="15" x2="12" y2="3"/>
+      </svg>
+      Export PDF / Save
+    </button>
+  </div>
+
   <div class="footer">
     <span>OY RETAIL BUNDLE CALC · ADL PTY LTD</span>
     <span>All figures AUD · LUC ex-GST · RRP inc. GST</span>
@@ -603,6 +710,15 @@
   }
 
   calc();
+
+  function exportPDF() {
+    var title = document.title;
+    var product = document.getElementById('oy-product');
+    var productName = product.options[product.selectedIndex].text.split(' —')[0];
+    document.title = 'OY Retail Bundle — ' + productName;
+    window.print();
+    document.title = title;
+  }
 </script>
 </body>
 </html>
