@@ -8,8 +8,8 @@
 <style>
   :root {
     --bg: #1a1a1a; --surface: #222222; --surface2: #272727;
-    --border: #333333; --accent: #e8c56d; --text: #e4e4e7;
-    --muted: #717170; --green: #5ec97a; --amber: #e8c56d;
+    --border: #333333; --accent: #E3C07B; --text: #e4e4e7;
+    --muted: #717170; --green: #5ec97a; --amber: #E3C07B;
     --red: #d4545c; --blue: #7b9ccd; --teal: #4ecdc4;
   }
   * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -22,7 +22,7 @@
   body::before {
     content: ''; position: fixed;
     top: -200px; right: -200px; width: 600px; height: 600px;
-    background: radial-gradient(circle, rgba(232,197,109,0.05) 0%, transparent 70%);
+    background: radial-gradient(circle, rgba(227,192,123,0.05) 0%, transparent 70%);
     pointer-events: none;
   }
   body::after {
@@ -58,7 +58,7 @@
     animation: fadeUp 0.6s ease 0.1s both;
   }
   .panel.ft-panel { border-color: rgba(78,205,196,0.25); }
-  .panel.oy-panel { border-color: rgba(232,197,109,0.25); }
+  .panel.oy-panel { border-color: rgba(227,192,123,0.25); }
 
   .panel-accent { height: 2px; border-radius: 2px; margin-bottom: 20px; }
   .panel-accent.gold { background: var(--accent); }
@@ -85,7 +85,7 @@
     border: 1px solid var(--border); border-radius: 4px;
     font-size: 11px; margin-bottom: 6px; transition: opacity 0.3s;
   }
-  .computed-row.highlight { border-color: rgba(232,197,109,0.3); }
+  .computed-row.highlight { border-color: rgba(227,192,123,0.3); }
   .computed-label { color: var(--muted); }
   .computed-val { font-variant-numeric: tabular-nums; }
   .computed-val.gold { color: var(--accent); }
@@ -200,7 +200,7 @@
     display: inline-block; font-size: 8px; letter-spacing: 0.15em; text-transform: uppercase;
     padding: 2px 6px; border-radius: 3px; margin-left: 6px; vertical-align: middle;
   }
-  .badge.oy { background: rgba(232,197,109,0.15); color: var(--accent); }
+  .badge.oy { background: rgba(227,192,123,0.15); color: var(--accent); }
   .badge.ft { background: rgba(78,205,196,0.15); color: var(--teal); }
 
   .vol-row { display: grid; grid-template-columns: 1fr 70px; gap: 8px; align-items: center; margin-bottom: 10px; }
@@ -236,8 +236,8 @@
     .container { max-width: 100% !important; animation: none !important; }
 
     h1 { font-size: 26px !important; color: #111 !important; }
-    h1 span { color: #b8952a !important; }
-    .label-tag { color: #b8952a !important; }
+    h1 span { color: #a8862a !important; }
+    .label-tag { color: #a8862a !important; }
     .subtitle { color: #555 !important; }
 
     .panel, .retailer-bundle-section, .cards-grid .card,
@@ -246,12 +246,12 @@
       box-shadow: none !important; animation: none !important;
       break-inside: avoid;
     }
-    .panel.oy-panel { border-color: #b8952a !important; }
+    .panel.oy-panel { border-color: #a8862a !important; }
     .panel.ft-panel { border-color: #2a9d8f !important; }
 
-    .panel-accent.gold { background: #b8952a !important; }
+    .panel-accent.gold { background: #a8862a !important; }
     .panel-accent.teal { background: #2a9d8f !important; }
-    .retailer-bundle-section::before { background: linear-gradient(90deg, #b8952a, #2a9d8f) !important; }
+    .retailer-bundle-section::before { background: linear-gradient(90deg, #a8862a, #2a9d8f) !important; }
 
     .section-title { color: #888 !important; }
     .section-title::after { background: #ccc !important; }
@@ -260,14 +260,14 @@
       background: #f8f8f8 !important; border-color: #ddd !important;
       color: #111 !important;
     }
-    .computed-row.highlight { border-color: #b8952a !important; }
+    .computed-row.highlight { border-color: #a8862a !important; }
     .computed-label { color: #555 !important; }
 
-    .computed-val.gold, .card.gold .card-value { color: #b8952a !important; }
+    .computed-val.gold, .card.gold .card-value { color: #a8862a !important; }
     .computed-val.teal, .card.teal .card-value { color: #2a9d8f !important; }
     .computed-val.green, .card.green .card-value { color: #2d7a3a !important; }
     .computed-val.red,   .card.red .card-value   { color: #c0392b !important; }
-    .computed-val.warn                            { color: #b8952a !important; }
+    .computed-val.warn                            { color: #a8862a !important; }
     .computed-val.blue,  .card.blue .card-value   { color: #2c5f8a !important; }
     .computed-val.muted { color: #777 !important; }
 
@@ -289,7 +289,7 @@
     label { color: #555 !important; }
     .input-unit { color: #777 !important; }
 
-    .badge.oy { background: rgba(184,149,42,0.12) !important; color: #b8952a !important; }
+    .badge.oy { background: rgba(168,134,42,0.12) !important; color: #a8862a !important; }
     .badge.ft { background: rgba(42,157,143,0.12) !important; color: #2a9d8f !important; }
 
     .header { border-color: #ccc !important; }
@@ -305,7 +305,7 @@
 <div class="container">
 
   <div class="header">
-    <span class="label-tag">Australian Distilling Co. · Old Youngs Portfolio</span>
+    <span class="label-tag">Australian Distilling Pty Ltd · Benni Steele © 2026</span>
     <h1>Retail <span>Bundle</span> Calculator</h1>
     <div class="subtitle">OYD LIQUID + FEVER-TREE MIXER · RETAILER GP MODELLING · ALL FIGURES AUD EX-GST</div>
   </div>
@@ -550,7 +550,7 @@
     </div>
     <div class="meter-legend">
       <span><span class="legend-dot" style="background:#d4545c"></span>Weak &lt;18%</span>
-      <span><span class="legend-dot" style="background:#e8c56d"></span>Promo 18–22%</span>
+      <span><span class="legend-dot" style="background:#E3C07B"></span>Promo 18–22%</span>
       <span><span class="legend-dot" style="background:#5ec97a"></span>Solid 22–28%</span>
       <span><span class="legend-dot" style="background:#7b9ccd"></span>Strong 28%+</span>
     </div>
@@ -569,7 +569,7 @@
   </div>
 
   <div class="footer">
-    <span>OY RETAIL BUNDLE CALC · ADL PTY LTD</span>
+    <span>Australian Distilling Pty Ltd 2026 · Benni Steele © 2026</span>
     <span>All figures AUD · LUC ex-GST · RRP inc. GST</span>
   </div>
 
@@ -701,7 +701,7 @@
 
     // Meter
     var fill   = document.getElementById('meter-fill');
-    var mCol   = gpPct < 18 ? '#d4545c' : gpPct < 22 ? '#e8c56d' : gpPct < 28 ? '#5ec97a' : '#7b9ccd';
+    var mCol   = gpPct < 18 ? '#d4545c' : gpPct < 22 ? '#E3C07B' : gpPct < 28 ? '#5ec97a' : '#7b9ccd';
     fill.style.width      = Math.min(gpPct, 60) / 60 * 100 + '%';
     fill.style.background = mCol;
     var mLabel = document.getElementById('meter-pct-label');
