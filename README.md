@@ -1,2 +1,2 @@
-# OYD-LM-Retail-Cogs
+# OYD RETAIL CALCULATOR
 A retail calculator for OYD 
